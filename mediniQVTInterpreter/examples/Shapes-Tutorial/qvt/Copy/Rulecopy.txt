@@ -1,0 +1,3 @@
+Base transformation called copy.qvt establish a full copy of the model.
+
+You can perform "Compare with -> Each Other" to see differences from copy.qvt to the other QVT scripts.

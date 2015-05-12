@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.ikv.medini.qvt.example/gensrc"
+    modelPluginID="de.ikv.medini.qvt.example" modelName="ShapesMetamodel" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false">
+  <foreignModel>ShapesMetamodel.ecore</foreignModel>
+  <genPackages prefix="ShapeLanguageMetamodel" disposableProviderFactory="true" ecorePackage="ShapesMetamodel.ecore#_NwLr0NsFEdysHr7OpRT46A">
+    <genClasses ecoreClass="ShapesMetamodel.ecore#//RootBlock"/>
+    <genClasses ecoreClass="ShapesMetamodel.ecore#//Circle"/>
+    <genClasses ecoreClass="ShapesMetamodel.ecore#//Triangle"/>
+    <genClasses ecoreClass="ShapesMetamodel.ecore#//Square"/>
+    <genClasses ecoreClass="ShapesMetamodel.ecore#//SimpleShape"/>
+    <genClasses ecoreClass="ShapesMetamodel.ecore#//Block">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ShapesMetamodel.ecore#//Block/modelElement"/>
+    </genClasses>
+    <genClasses ecoreClass="ShapesMetamodel.ecore#//Shape">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShapesMetamodel.ecore#//Shape/outArrow"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShapesMetamodel.ecore#//Shape/inArrow"/>
+    </genClasses>
+    <genClasses ecoreClass="ShapesMetamodel.ecore#//Arrow">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShapesMetamodel.ecore#//Arrow/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ShapesMetamodel.ecore#//Arrow/target"/>
+    </genClasses>
+    <genClasses ecoreClass="ShapesMetamodel.ecore#//ModelElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ShapesMetamodel.ecore#//ModelElement/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ShapesMetamodel.ecore#//ModelElement/parent"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,53 @@
+-- this transformation produces random models.
+-- input: a single model consisting only of a RootBlock. 
+-- In the lauch configuration, "Randomly generated elements" must be set to a positive number. Also, the input model must also be listed in "Second Set of Models".
+transformation random(source : Shapes, target : Shapes) {
+	
+	top relation MapBlock {
+		
+		enforce domain source s : Shapes::Block {
+		};
+		
+		enforce domain target t : Shapes::Block {
+			block = s,
+			name = getRandomString()
+		};
+		
+	}
+	
+	top relation MapCircle {
+		
+		enforce domain source s : Shapes::Block {
+		};
+		
+		enforce domain target t : Shapes::Circle {
+			block = s,
+			name = getRandomString()
+		};
+		
+	}
+	
+	top relation MapArrow {
+		
+		enforce domain source s1 : Shapes::Circle {
+		};
+		
+		enforce domain source s2 : Shapes::Circle {
+		};
+		
+		enforce domain source block : Shapes::Block {
+		};
+		
+		enforce domain target t : Shapes::Arrow {
+			source = s1,
+			target = s2,
+			block = block
+		};
+		
+	}
+	
+	query getRandomString () : String {
+		''
+	}
+	
+}

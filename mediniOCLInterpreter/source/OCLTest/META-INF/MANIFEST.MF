@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.6.5
+Bundle-Name: Medini OCL20 Bridge 4 Medini Test
+Bundle-SymbolicName: de.ikv.medini.ocl20.bridge4medini.test
+Bundle-Version: 1.0.0.qualifier
+Export-Package: de.ikv.medini.ocl20.bridge4medini.test
+Import-Package: 
+ org.oslo.ocl20.brifge4emf,
+ de.ikv.medini.ocl.test,
+ de.ikv.medini.ocl.test.util
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

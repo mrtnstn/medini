@@ -1,0 +1,253 @@
+-- The idea of this solution is the following:
+-- If a circle has more then one outgoing arrow, it opens a new block, otherwise it is put into an existing block calculated by its predecessors (circles having a path to this circle).
+-- Note that this transformation prints information to the console using the _debug query.
+-- Note that there are some statements commented. These statements should be prefered to the preceding OCL statements, but however because of logical deadlocks these commented relation calls produce, they will corrupt the transformation.
+transformation r8(source : Shapes, target : Shapes) {
+	
+	--Maps a circle to the direct containing block in the target model
+	relation Circle2block {
+	
+		enforce domain source s : Shapes::Circle {
+		};
+		
+		enforce domain target t : Shapes::Block {
+		};		
+	
+	}
+	
+	--Maps a join circle to the fork circle
+	relation Join2Fork {
+	
+		enforce domain source s : Shapes::Circle {
+		};
+		
+		enforce domain target t : Shapes::Circle {
+		};		
+	
+	}
+	
+	--Maps a circle to a block block in which this circle or a new block of this circle is directly contained (depending on the outgoing arrows)
+	relation Circle2Baseblock {
+	
+		enforce domain source s : Shapes::Circle {
+		};
+		
+		enforce domain target t : Shapes::Block {
+		};
+		
+	}
+	
+	--Tells whether the given circle is a join node
+	relation IsJoinNode {
+	
+		enforce domain source s : Shapes::Circle {
+		};
+		
+	}	
+	
+	--Tells whether the given circle is a fork node
+	relation IsForkNode {
+	
+		enforce domain source s : Shapes::Circle {
+		};
+		
+	}		
+	
+	--Creates a circle in the target model
+	top relation Circle2Circle {
+		n:String;
+		
+		enforce domain source s : Shapes::Circle {
+			name = n			
+		};
+		
+		enforce domain target t : Shapes::Circle {
+			name = n,
+			block = block : Shapes::Block {}
+		};
+		
+		when {
+			---s.inArrow->size()<=1 and s.outArrow->size()<=1; --uncomment if you also want to have join and fork nodes being contained in the target model
+			not IsForkNode(s) and not IsJoinNode(s); ---
+			Circle2block(s,block);
+		}
+		
+	}	
+	
+	--Maps a circle having several outgoing arrows to the direct containing block in the target model
+	top relation CircleWithSeveralOutgoingArrows2Block {
+	
+		n : String;
+		
+		enforce domain source s : Shapes::Circle {
+			name = n			
+		};
+		
+		enforce domain target block : Shapes::Block {
+			name = n,
+			block = blockBlock : Shapes::Block {}
+		};
+		
+		when {	
+			s.outArrow->size()>=2;
+			Circle2Baseblock(s,blockBlock);
+		}
+		
+		where {
+			Circle2block(s,block);
+		}
+		
+	}
+	
+	--Maps a circle having not several outgoing arrows to the direct containing block in the target model
+	top relation CircleWithOneOutgoingArrow2Block {
+		
+		enforce domain source s : Shapes::Circle {
+		};
+		
+		enforce domain target blockBlock : Shapes::Block {
+			--_context = ''
+		};
+		
+		when {	
+			not CircleWithSeveralOutgoingArrows2Block(s,blockBlock);
+			Circle2Baseblock(s,blockBlock);
+		}
+		
+		where {
+			Circle2block(s,blockBlock);
+		}
+		
+	}
+	
+	
+	-- relation holds when there is a path from s1 to s2
+	top relation HasPath {
+		
+		enforce domain source s1 : Shapes::Circle {
+			outArrow = arrow : Shapes::Arrow {
+				target = nextCircle : Shapes::Circle {}
+			}
+		};
+		
+		enforce domain source s2 : Shapes::Circle {
+		};
+		
+		when {
+			(s2=nextCircle) or HasPath(nextCircle,s2);
+		}
+		
+	}
+		
+	-- This relation holds when every path leaving s1 can reach s2 and every path reaching s2 can start from s1.
+	-- So when this relation holds, s2 shall be in the same block as s1.
+	top relation IsJoinAndFork {
+	
+		blockBlock : Shapes::Block;
+		
+		enforce domain source s1 : Shapes::Circle {};
+		
+		enforce domain source s2 : Shapes::Circle {};
+		
+		when {
+			HasPath(s1,s2);
+			s1.outArrow->size()>=2;
+			s2.inArrow->size()>=2;
+			s2.inArrow->forAll(x : Shapes::Arrow | (not x.source.oclIsUndefined()) implies HasPath(s1, x.source));
+			s1.outArrow->forAll(x : Shapes::Arrow | (not x.target.oclIsUndefined()) implies HasPath(x.target,s2));
+			_debug('HasMultiplePaths:'+s1.name+' '+s2.name)<>'';
+			Circle2block(s1,blockBlock);
+		}
+		
+		where {
+			Circle2Baseblock(s2,blockBlock);
+			IsJoinNode(s2);
+			IsForkNode(s1);
+			Join2Fork(s2,s1);
+		}
+		
+	}
+		
+	--Examines when a non-join circle has a join circle as predecessor
+	top relation HasJoinPredecessor {
+	
+		blockBlock : Shapes::Block;
+		fork : Shapes::Shape;
+		
+		enforce domain source s1 : Shapes::Circle {
+			inArrow = arrow : Shapes::Arrow {
+				source = predecessor : Shapes::Shape {}
+			}
+		};
+		
+		
+		when {
+			not IsJoinNode(s1);
+			Join2Fork(predecessor,fork);
+			Circle2Baseblock(fork,blockBlock);
+			_debug('HasJoinPredecessor:'+s1.name+' by '+fork.name)<>'';			
+		}
+		
+		where {
+			Circle2Baseblock(s1,blockBlock);
+		}
+		
+	}
+	
+	--Examines when a non-join circle has a non-join circle as predecessor
+	top relation HasNoJoinPredecessor {
+	
+		blockBlock : Shapes::Block;
+		
+		enforce domain source s1 : Shapes::Circle {
+			inArrow = arrow : Shapes::Arrow {
+				source = predecessor : Shapes::Shape {}
+			}
+		};		
+		
+		when {
+			--s1.inArrow.size()<=1;
+			not IsJoinNode(s1); ---
+			--predecessor.inArrow.size()<=1;
+			not IsJoinNode(predecessor); ---
+			Circle2block(predecessor,blockBlock);
+			_debug('HasNoJoinPredecessor:'+s1.name+' by '+predecessor.name)<>'';			
+		}
+		
+		where {
+			Circle2Baseblock(s1,blockBlock);
+		}
+		
+	}
+	
+	--Examines when a circle has no incoming arrows
+	top relation IsStartingNode {
+			
+		enforce domain source s1 : Shapes::Circle {};
+		
+		enforce domain target blockBlock : Shapes::RootBlock {
+			name = 'top level'
+		};
+		
+		
+		when {
+			s1.inArrow.size()=0;
+		}
+		
+		where {
+			Circle2Baseblock(s1,blockBlock);
+			--_debug('').oclIsUndefined();
+		}
+		
+	}
+	
+	query _debug (s:String) : String { 
+		s  
+	} 
+	
+	query _debug (s:Shapes::Block) : String { 
+		undefined
+	}
+	
+	
+}

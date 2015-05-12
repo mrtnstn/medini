@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Shapes="urn:Shapes.ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmi:id="_gGWVQDlUEd2g9doTYobLGA" type="Shapes" name="target.shapes_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_q9YJMDlUEd2g9doTYobLGA" type="2006">
+    <children xmi:type="notation:Node" xmi:id="_q9h6MDlUEd2g9doTYobLGA" type="5001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_q9h6MTlUEd2g9doTYobLGA" y="5"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_q9YJMTlUEd2g9doTYobLGA"/>
+    <element xmi:type="Shapes:Square" href="target.shapes#//@modelElement.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_q9YJMjlUEd2g9doTYobLGA" x="55" y="55"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_hRk80DlVEd2g9doTYobLGA" type="2006">
+    <children xmi:type="notation:Node" xmi:id="_hRk80zlVEd2g9doTYobLGA" type="5001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_hRk81DlVEd2g9doTYobLGA" y="5"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_hRk80TlVEd2g9doTYobLGA"/>
+    <element xmi:type="Shapes:Square" href="target.shapes#//@modelElement.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hRk80jlVEd2g9doTYobLGA" x="55" y="325"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_o2CMyjlVEd2g9doTYobLGA" type="2004">
+    <children xmi:type="notation:Node" xmi:id="_o2CMzTlVEd2g9doTYobLGA" type="5002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_o2CMzjlVEd2g9doTYobLGA" y="5"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_o2CMyzlVEd2g9doTYobLGA"/>
+    <element xmi:type="Shapes:Circle" href="target.shapes#//@modelElement.4"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_o2CMzDlVEd2g9doTYobLGA" x="55" y="145"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_6aGgcDlVEd2g9doTYobLGA" type="2004">
+    <children xmi:type="notation:Node" xmi:id="_6aGgczlVEd2g9doTYobLGA" type="5002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_6aGgdDlVEd2g9doTYobLGA" y="5"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_6aGgcTlVEd2g9doTYobLGA"/>
+    <element xmi:type="Shapes:Circle" href="target.shapes#//@modelElement.2"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_6aGgcjlVEd2g9doTYobLGA" x="55" y="235"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_gGWVQTlUEd2g9doTYobLGA"/>
+  <element xmi:type="Shapes:RootBlock" href="target.shapes#/"/>
+  <edges xmi:type="notation:Edge" xmi:id="_6aPqYDlVEd2g9doTYobLGA" type="4001" source="_6aGgcDlVEd2g9doTYobLGA" target="_hRk80DlVEd2g9doTYobLGA">
+    <children xmi:type="notation:Node" xmi:id="_6aPqZDlVEd2g9doTYobLGA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_6aPqZTlVEd2g9doTYobLGA" y="40"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_6aPqYTlVEd2g9doTYobLGA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_6aPqYjlVEd2g9doTYobLGA"/>
+    <element xmi:type="Shapes:Arrow" href="target.shapes#//@modelElement.3"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_6aPqYzlVEd2g9doTYobLGA" points="[0, 15, 0, -75]$[0, 75, 0, -15]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_6aPqZjlVEd2g9doTYobLGA" type="4001" source="_o2CMyjlVEd2g9doTYobLGA" target="_6aGgcDlVEd2g9doTYobLGA">
+    <children xmi:type="notation:Node" xmi:id="_6aPqajlVEd2g9doTYobLGA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_6aPqazlVEd2g9doTYobLGA" y="40"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_6aPqZzlVEd2g9doTYobLGA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_6aPqaDlVEd2g9doTYobLGA"/>
+    <element xmi:type="Shapes:Arrow" href="target.shapes#//@modelElement.5"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_6aPqaTlVEd2g9doTYobLGA" points="[0, 15, 0, -75]$[0, 75, 0, -15]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_6aPqbDlVEd2g9doTYobLGA" type="4001" source="_q9YJMDlUEd2g9doTYobLGA" target="_o2CMyjlVEd2g9doTYobLGA">
+    <children xmi:type="notation:Node" xmi:id="_6aPqcDlVEd2g9doTYobLGA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_6aPqcTlVEd2g9doTYobLGA" y="40"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_6aPqbTlVEd2g9doTYobLGA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_6aPqbjlVEd2g9doTYobLGA"/>
+    <element xmi:type="Shapes:Arrow" href="target.shapes#//@modelElement.6"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_6aPqbzlVEd2g9doTYobLGA" points="[0, 15, 0, -75]$[0, 75, 0, -15]"/>
+  </edges>
+</notation:Diagram>

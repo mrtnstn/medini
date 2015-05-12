@@ -1,0 +1,169 @@
+-- The idea of this transformation is to use two markers. The first one maps a circle to its square in the target model and the second to its circle in the target model.
+-- Now these two marker relations are used to connect the arrows in the target model.
+transformation r10(source : Shapes, target : Shapes) {
+
+	top relation ArrowSource2ArrowSource {
+		
+		enforce domain source sourceArrow : Shapes::Arrow {
+			source = sourceArrowSource : Shapes::Shape {
+			}
+		};
+		
+		enforce domain target targetArrow : Shapes::Arrow {
+			source = targetArrowSource : Shapes::Shape {
+			}
+		};
+		
+		when {
+			Source2Target(sourceArrow, targetArrow);
+			markerForOutgoingArrows(sourceArrowSource, targetArrowSource);
+		}
+		
+	}
+	
+	top relation ArrowTarget2ArrowTarget {
+		
+		enforce domain source sourceArrow : Shapes::Arrow {
+			target = sourceArrowTarget : Shapes::Shape {
+			}
+		};
+		
+		enforce domain target targetArrow : Shapes::Arrow {
+			target = targetArrowTarget : Shapes::Shape {
+			}
+		};
+		
+		when {
+			Source2Target(sourceArrow, targetArrow);
+			markerForIncomingArrows(sourceArrowTarget, targetArrowTarget);
+		}
+		
+	}
+	
+	
+	top relation ModelElementName2ModelElementName {
+		
+		varName : String;
+		
+		enforce domain source sourceModelElement : Shapes::ModelElement {
+			name = varName
+		};
+		
+		enforce domain target targetModelElement : Shapes::ModelElement {
+			name = varName
+		};
+		
+		when {
+			Source2Target(sourceModelElement, targetModelElement);
+		}
+		
+	}
+		
+	top relation MapCircle {
+	
+		n:String;
+		root : Shapes::RootBlock;
+		
+		enforce domain source s : Shapes::Circle {
+			name=n
+		};
+		
+		enforce domain target square : Shapes::Square {
+			name=n+' square',
+			block = root,
+			outArrow = a : Shapes::Arrow {
+				target = circle : Shapes::Circle {
+					name=n+' circle',
+					block = root
+				},
+				name = n+' arrow',
+				block = root
+			}
+		};
+		
+		when {
+			MarkRootBlock(root);
+		}
+		
+		where {
+			markerForOutgoingArrows(s,circle);
+			markerForIncomingArrows(s,square);			
+		}
+		
+	}
+	
+	
+	relation markerForOutgoingArrows {
+		
+		enforce domain source s : Shapes::Circle {
+		};
+		
+		enforce domain target t : Shapes::Circle {
+		};
+		
+	}
+	
+	relation markerForIncomingArrows {
+		
+		enforce domain source s : Shapes::Circle {
+		};
+		
+		enforce domain target t : Shapes::Square {
+		};
+		
+	}
+	
+	top relation MapArrow {
+	
+		root : Shapes::RootBlock;
+		
+		enforce domain source s : Shapes::Arrow {
+		};
+		
+		enforce domain target t : Shapes::Arrow {
+			block = root
+		};
+		
+		when {
+			MarkRootBlock(root);
+		}	
+		
+		where {
+			Source2Target(s,t);
+		}
+		
+	}
+	
+	
+	relation Source2Target {
+		
+		enforce domain source s : Shapes::ModelElement {
+		};
+		
+		enforce domain target t : Shapes::ModelElement {
+		};			
+		
+	}
+	
+	top relation MapRootBlock {
+		
+		enforce domain source s : Shapes::RootBlock {
+		};
+		
+		enforce domain target t : Shapes::RootBlock {
+		};
+		
+		where {
+			MarkRootBlock(t);
+		}
+		
+	}
+	
+	relation MarkRootBlock {
+		
+		enforce domain target root : Shapes::RootBlock {
+		};		
+		
+	}
+	
+}

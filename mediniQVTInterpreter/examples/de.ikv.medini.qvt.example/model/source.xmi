@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ShapeLanguageMetamodel:RootBlock xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ShapeLanguageMetamodel="http://www.ikv.de/ShapeLanguageMetamodel.ecore" xsi:schemaLocation="http://www.ikv.de/ShapeLanguageMetamodel.ecore ShapesMetamodel.ecore#_NwLr0NsFEdysHr7OpRT46A">
+  <modelElement xsi:type="ShapeLanguageMetamodel:Circle"/>
+</ShapeLanguageMetamodel:RootBlock>

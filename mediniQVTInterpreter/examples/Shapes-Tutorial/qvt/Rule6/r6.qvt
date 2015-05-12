@@ -1,0 +1,173 @@
+-- in this solution, the model is copied, however empty blocks are mapped on squares
+transformation r6(source : Shapes, target : Shapes) {
+
+	top relation ArrowSource2ArrowSource {
+		
+		enforce domain source sourceArrow : Shapes::Arrow {
+			source = sourceArrowSource : Shapes::Shape {
+			}
+		};
+		
+		enforce domain target targetArrow : Shapes::Arrow {
+			source = targetArrowSource : Shapes::Shape {
+			}
+		};
+		
+		when {
+			Source2Target(sourceArrow, targetArrow);
+			Source2Target(sourceArrowSource, targetArrowSource);
+		}
+		
+	}
+	
+	top relation ArrowTarget2ArrowTarget {
+		
+		enforce domain source sourceArrow : Shapes::Arrow {
+			target = sourceArrowTarget : Shapes::Shape {
+			}
+		};
+		
+		enforce domain target targetArrow : Shapes::Arrow {
+			target = targetArrowTarget : Shapes::Shape {
+			}
+		};
+		
+		when {
+			Source2Target(sourceArrow, targetArrow);
+			Source2Target(sourceArrowTarget, targetArrowTarget);
+		}
+		
+	}
+	
+	top relation ModelElementName2ModelElementName {
+		
+		varName : String;
+		
+		enforce domain source sourceModelElement : Shapes::ModelElement {
+			name = varName
+		};
+		
+		enforce domain target targetModelElement : Shapes::ModelElement {
+			name = varName
+		};
+		
+		when {
+			Source2Target(sourceModelElement, targetModelElement);
+		}
+		
+	}
+	
+	
+	top relation ModelElementblock2ModelElementblock {
+				
+		enforce domain source sourceModelElement : Shapes::ModelElement {
+			block = sourceblock : Shapes::Block {
+			}
+		};
+		
+		enforce domain target targetModelElement : Shapes::ModelElement {
+			block = targetblock : Shapes::Block {
+			}
+		};
+		
+		when {
+			Source2Target(sourceModelElement, targetModelElement);
+			Source2Target(sourceblock, targetblock);
+		}
+		
+	}
+	
+	top relation Source2Target {
+		
+		enforce domain source s : Shapes::ModelElement {
+		};
+		
+		enforce domain target t : Shapes::ModelElement {
+		};
+		
+		when { 
+			MapBlock(s, t) or MapBlockAsShape(s, t) or MapRootBlock(s, t) or MapCircle(s, t) or MapTriangle(s, t) or MapSquare(s, t) or MapArrow(s, t);
+		}
+		
+	}
+	
+	top relation MapRootBlock {
+		
+		enforce domain source s : Shapes::RootBlock {
+		};
+		
+		enforce domain target t : Shapes::RootBlock { 
+		};				
+		
+	}
+	
+	top relation MapBlock {
+		
+		enforce domain source s : Shapes::Block {
+		};
+		
+		enforce domain target t : Shapes::Block { --magic
+		};
+		
+		when {
+			s.modelElement->size()>=1;
+			not MapRootBlock(s, t);
+		}
+		
+	}	
+	
+	top relation MapBlockAsShape {
+		
+		enforce domain source s : Shapes::Block {
+		};
+		
+		enforce domain target t : Shapes::Square { --magic
+		};
+		
+		when {
+			s.modelElement->size()=0;
+		}
+		
+	}
+	
+	top relation MapCircle {
+		
+		enforce domain source s : Shapes::Circle {
+		};
+		
+		enforce domain target t : Shapes::Circle {
+		};
+		
+	}
+	
+	top relation MapTriangle {
+		
+		enforce domain source s : Shapes::Triangle {
+		};
+		
+		enforce domain target t : Shapes::Triangle {
+		};
+		
+	}
+	
+	top relation MapSquare {
+		
+		enforce domain source s : Shapes::Square {
+		};
+		
+		enforce domain target t : Shapes::Square {
+		};
+		
+	}
+	
+	top relation MapArrow {
+		
+		enforce domain source s : Shapes::Arrow {
+		};
+		
+		enforce domain target t : Shapes::Arrow {
+		};
+		
+	}
+	
+}

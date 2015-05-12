@@ -1,0 +1,271 @@
+transformation testIsKindOfAndIsTypeOf(i : Shapes, o : Shapes) {
+/*
+	top relation Shape_KindOf_Shape2ModelElement {
+		enforce domain i iShape: Shapes::Shape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'OK-1of10'
+		};
+		when {
+			iShape.oclIsKindOf(Shapes::Shape);
+		}
+	}
+	
+	top relation Query_Shape_KindOf_Shape2ModelElement {
+		enforce domain i iShape: Shapes::Shape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'OK-2of10'
+		};
+		when {
+			Shape_KindOf_Shape(iShape);
+		}
+	}
+	
+	query Shape_KindOf_Shape (s :Shapes::Shape) : Boolean {
+		s.oclIsKindOf(Shapes::Shape)
+	}
+
+	top relation Shape_TypeOf_Shape2ModelElement {
+		enforce domain i iShape: Shapes::Shape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'OK-3of10'
+		};
+		when {
+			iShape.oclIsTypeOf(Shapes::Shape);
+		}
+	}
+	
+	top relation Query_Shape_TypeOf_Shape2ModelElement {
+		enforce domain i iShape: Shapes::Shape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'OK-4of10'
+		};
+		when {
+			Shape_TypeOf_Shape(iShape);
+		}
+	}
+	
+	query Shape_TypeOf_Shape (s :Shapes::Shape) : Boolean {
+		s.oclIsTypeOf(Shapes::Shape)
+	}
+
+--
+
+	top relation Shape_KindOf_SimpleShape2ModelElement {
+		enforce domain i iShape: Shapes::Shape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'FAILURE-Shape_KindOf_SimpleShape2ModelElement'
+		};
+		when {
+			iShape.oclIsKindOf(Shapes::SimpleShape);
+		}
+	}
+	
+	top relation Query_Shape_KindOf_SimpleShape2ModelElement {
+		enforce domain i iShape: Shapes::Shape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'FAILURE-Query_Shape_KindOf_SimpleShape2ModelElement'
+		};
+		when {
+			Shape_KindOf_SimpleShape(iShape);
+		}
+	}
+	
+	query Shape_KindOf_SimpleShape (s :Shapes::Shape) : Boolean {
+		s.oclIsKindOf(Shapes::SimpleShape)
+	}
+
+	top relation Shape_TypeOf_SimpleShape2ModelElement {
+		enforce domain i iShape: Shapes::Shape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'FAILURE-Shape_KindOf_SimpleShape'
+		};
+		when {
+			iShape.oclIsTypeOf(Shapes::SimpleShape);
+		}
+	}
+	
+	top relation Query_Shape_TypeOf_SimpleShape2ModelElement {
+		enforce domain i iShape: Shapes::Shape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'FAILURE-Query_Shape_TypeOf_SimpleShape2ModelElement'
+		};
+		when {
+			Shape_TypeOf_SimpleShape(iShape);
+		}
+	}
+	
+	query Shape_TypeOf_SimpleShape (s :Shapes::Shape) : Boolean {
+		s.oclIsTypeOf(Shapes::SimpleShape)
+	}
+*/
+----
+
+	top relation SimpleShape_KindOf_Shape2ModelElement {
+		enforce domain i iSimpleShape: Shapes::SimpleShape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'OK-5of10'
+		};
+		when {
+			iSimpleShape.oclIsKindOf(Shapes::Shape);
+		}
+	}
+	
+	top relation Query_SimpleShape_KindOf_Shape2ModelElement {
+		enforce domain i iSimpleShape: Shapes::SimpleShape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'OK-6of10'
+		};
+		when {
+			SimpleShape_KindOf_Shape(iSimpleShape);
+		}
+	}
+	
+	query SimpleShape_KindOf_Shape (s :Shapes::SimpleShape) : Boolean {
+		s.oclIsKindOf(Shapes::Shape)
+	}
+
+	top relation SimpleShape_TypeOf_Shape2ModelElement {
+		enforce domain i iSimpleShape: Shapes::SimpleShape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'FAILURE-SimpleShape_TypeOf_Shape2ModelElement'
+		};
+		when {
+			iSimpleShape.oclIsTypeOf(Shapes::Shape);
+		}
+	}
+	
+	top relation Query_SimpleShape_TypeOf_Shape2ModelElement {
+		enforce domain i iSimpleShape: Shapes::SimpleShape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'FAILURE-Query_SimpleShape_TypeOf_Shape2ModelElement'
+		};
+		when {
+			SimpleShape_TypeOf_Shape(iSimpleShape);
+		}
+	}
+	
+	query SimpleShape_TypeOf_Shape (s :Shapes::SimpleShape) : Boolean {
+		s.oclIsTypeOf(Shapes::Shape)
+	}
+
+--
+
+	top relation SimpleShape_KindOf_SimpleShape2ModelElement {
+		enforce domain i iSimpleShape: Shapes::SimpleShape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'OK-7of10'
+		};
+		when {
+			iSimpleShape.oclIsKindOf(Shapes::SimpleShape);
+		}
+	}
+	
+	top relation Query_SimpleShape_KindOf_SimpleShape2ModelElement {
+		enforce domain i iSimpleShape: Shapes::SimpleShape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'OK-8of10'
+		};
+		when {
+			SimpleShape_KindOf_SimpleShape(iSimpleShape);
+		}
+	}
+	
+	query SimpleShape_KindOf_SimpleShape (s :Shapes::SimpleShape) : Boolean {
+		s.oclIsKindOf(Shapes::SimpleShape)
+	}
+
+	top relation SimpleShape_TypeOf_SimpleShape2ModelElement {
+		enforce domain i iSimpleShape: Shapes::SimpleShape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'OK-9of10'
+		};
+		when {
+			iSimpleShape.oclIsTypeOf(Shapes::SimpleShape);
+		}
+	}
+	
+	top relation Query_SimpleShape_TypeOf_SimpleShape2ModelElement {
+		enforce domain i iSimpleShape: Shapes::SimpleShape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'OK-10of10'
+		};
+		when {
+			SimpleShape_TypeOf_SimpleShape(iSimpleShape);
+		}
+	}
+	
+	query SimpleShape_TypeOf_SimpleShape (s :Shapes::SimpleShape) : Boolean {
+		s.oclIsTypeOf(Shapes::SimpleShape)
+	}
+	
+----
+
+	top relation SimpleShape_KindOf_Block2ModelElement {
+		enforce domain i iSimpleShape: Shapes::SimpleShape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'FAILURE-SimpleShape_KindOf_Block2ModelElement'
+		};
+		when {
+			iSimpleShape.oclIsKindOf(Shapes::Block);
+		}
+	}
+	
+	top relation Query_SimpleShape_KindOf_Block2ModelElement {
+		enforce domain i iSimpleShape: Shapes::SimpleShape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'FAILURE-Query_SimpleShape_KindOf_Block2ModelElement'
+		};
+		when {
+			SimpleShape_KindOf_Block(iSimpleShape);
+		}
+	}
+	
+	query SimpleShape_KindOf_Block (s :Shapes::SimpleShape) : Boolean {
+		s.oclIsKindOf(Shapes::Block)
+	}
+
+	top relation SimpleShape_TypeOf_Block2ModelElement {
+		enforce domain i iSimpleShape: Shapes::SimpleShape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'FAILURE-SimpleShape_TypeOf_Block2ModelElement'
+		};
+		when {
+			iSimpleShape.oclIsTypeOf(Shapes::Block);
+		}
+	}
+	
+	top relation Query_SimpleShape_TypeOf_Block2ModelElement {
+		enforce domain i iSimpleShape: Shapes::SimpleShape {
+		};
+		enforce domain o oME: Shapes::ModelElement {
+			name = 'FAILURE-Query_SimpleShape_TypeOf_Block2ModelElement'
+		};
+		when {
+			SimpleShape_TypeOf_Block(iSimpleShape);
+		}
+	}
+	
+	query SimpleShape_TypeOf_Block (s :Shapes::SimpleShape) : Boolean {
+		s.oclIsTypeOf(Shapes::Block)
+	}
+	
+}

@@ -1,0 +1,141 @@
+-- in this solution, only blocks are mapped to the target model
+transformation r6_only_blocks(source : Shapes, target : Shapes) {
+
+	top relation ArrowSource2ArrowSource {
+		
+		enforce domain source sourceArrow : Shapes::Arrow {
+			source = sourceArrowSource : Shapes::Shape {
+			}
+		};
+		
+		enforce domain target targetArrow : Shapes::Arrow {
+			source = targetArrowSource : Shapes::Shape {
+			}
+		};
+		
+		when {
+			Source2Target(sourceArrow, targetArrow);
+			Source2Target(sourceArrowSource, targetArrowSource);
+		}
+		
+	}
+	
+	top relation ArrowTarget2ArrowTarget {
+		
+		enforce domain source sourceArrow : Shapes::Arrow {
+			target = sourceArrowTarget : Shapes::Shape {
+			}
+		};
+		
+		enforce domain target targetArrow : Shapes::Arrow {
+			target = targetArrowTarget : Shapes::Shape {
+			}
+		};
+		
+		when {
+			Source2Target(sourceArrow, targetArrow);
+			Source2Target(sourceArrowTarget, targetArrowTarget);
+		}
+		
+	}
+	
+	top relation ModelElementName2ModelElementName {
+		
+		varName : String;
+		
+		enforce domain source sourceModelElement : Shapes::ModelElement {
+			name = varName
+		};
+		
+		enforce domain target targetModelElement : Shapes::ModelElement {
+			name = varName
+		};
+		
+		when {
+			Source2Target(sourceModelElement, targetModelElement);
+		}
+		
+	}
+	
+	
+	top relation ModelElementblock2ModelElementblock {
+				
+		enforce domain source sourceModelElement : Shapes::ModelElement {
+			block = sourceblock : Shapes::Block {
+			}
+		};
+		
+		enforce domain target targetModelElement : Shapes::ModelElement {
+			block = targetblock : Shapes::Block {
+			}
+		};
+		
+		when {
+			Source2Target(sourceModelElement, targetModelElement);
+			Source2Target(sourceblock, targetblock);
+		}
+		
+	}
+	
+	top relation Source2Target {
+		
+		enforce domain source s : Shapes::ModelElement {
+		};
+		
+		enforce domain target t : Shapes::ModelElement {
+		};
+		
+		when { 
+			MapBlock(s, t) or MapBlockAsShape(s, t) or MapRootBlock(s, t);
+		}
+		
+	}
+	
+	top relation MapRootBlock {
+		
+		enforce domain source s : Shapes::RootBlock {
+		};
+		
+		enforce domain target t : Shapes::RootBlock { 
+		};		
+				
+	}
+	
+	top relation MapBlock {
+		
+		enforce domain source s : Shapes::Block {
+		};
+		
+		enforce domain target t : Shapes::Block { --magic
+		};
+		
+		when {
+			not MapRootBlock(s, t);
+		    containsEmptyBlock(s);
+		}
+		
+	}	
+	
+	top relation MapBlockAsShape {
+		
+		enforce domain source s : Shapes::Block {
+		};
+		
+		enforce domain target t : Shapes::Square { --magic
+		};
+		
+		when {
+			isEmptyBlock(s);
+		}
+		
+	}	
+	
+	query containsEmptyBlock (b : Shapes::Block) : Boolean {
+		b.modelElement->exists(x : Shapes::ModelElement | x.oclIsTypeOf(Shapes::Block) and (containsEmptyBlock(x.oclAsType(Shapes::Block)) or isEmptyBlock(x.oclAsType(Shapes::Block))))
+	}
+	
+	query isEmptyBlock (b : Shapes::Block) : Boolean {
+		not b.modelElement->exists(x : Shapes::ModelElement | x.oclIsTypeOf(Shapes::Block))
+	}
+
+}

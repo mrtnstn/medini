@@ -1,0 +1,10 @@
+This example leans against a Activities-to-BPEL transformation task, however only using the Shapes metamodel.
+Assume that the source model contains only circles connected by arrows (they may be in a RootBlock).
+Now first identify fork/join pairs of circles. For a fork, all leaving paths go through its join, at for a join, all arriving paths start from its fork. 
+The task is to put the circles into blocks in that way that all circles between a fork/join pair are contained in a block in which no circles are contained not being between this join/fork pair.
+The task will get difficult since join/fork pairs may be nested, so nested blocks need to be created.
+Use COSMOShape.xmi as source model.
+
+
+
+

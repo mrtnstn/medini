@@ -1,0 +1,6 @@
+Construct a transformation that refines a Square in the source model to a Block containing a Circle in the target model.
+
+a) The arrows of the Square should be mapped so that they link to the Block.
+b) The arrows of the Square should be mapped so that they link to the Circle.
+
+Type: Refinement

@@ -1,0 +1,208 @@
+-- the magic in this solution is relation HasTrianglePath, which holds for every triangles pair between which a path exist using only triangles
+transformation r5(source : Shapes, target : Shapes) {
+
+	top relation ArrowSource2ArrowSource {
+		
+		enforce domain source sourceArrow : Shapes::Arrow {
+			source = sourceArrowSource : Shapes::Shape {
+			}
+		};
+				
+		enforce domain target targetArrow : Shapes::Arrow {
+			source = targetArrowSource : Shapes::Shape {
+			}
+		};
+		
+		when {
+			Source2Target(sourceArrow, targetArrow);
+			Source2Target(sourceArrowSource, targetArrowSource);
+		}
+		
+	}
+	
+	top relation ArrowTarget2ArrowTarget {
+		
+		enforce domain source sourceArrow : Shapes::Arrow {
+			target = sourceArrowTarget : Shapes::Shape {
+			}
+		};
+		
+		enforce domain target targetArrow : Shapes::Arrow {
+			target = targetArrowTarget : Shapes::Shape {
+			}
+		};
+		
+		when {
+			Source2Target(sourceArrow, targetArrow);
+			Source2Target(sourceArrowTarget, targetArrowTarget);
+		}
+		
+	}
+	
+	top relation ModelElementName2ModelElementName {
+		
+		varName : String;
+		
+		enforce domain source sourceModelElement : Shapes::ModelElement {
+			name = varName
+		};
+		
+		enforce domain target targetModelElement : Shapes::ModelElement {
+			name = varName
+		};
+		
+		when {
+			Source2Target(sourceModelElement, targetModelElement);
+		}
+		
+	}
+	
+	
+	top relation ModelElementblock2ModelElementblock {
+				
+		enforce domain source sourceModelElement : Shapes::ModelElement {
+			block = sourceblock : Shapes::Block {
+			}
+		};
+		
+		enforce domain target targetModelElement : Shapes::ModelElement {
+			block = targetblock : Shapes::Block {
+			}
+		};
+		
+		when {
+			Source2Target(sourceModelElement, targetModelElement);
+			Source2Target(sourceblock, targetblock);
+		}
+		
+	}
+	
+	top relation Source2Target {
+		
+		enforce domain source s : Shapes::ModelElement {
+		};
+		
+		enforce domain target t : Shapes::ModelElement {
+		};
+		
+		when {
+			MapBlock(s, t) or MapRootBlock(s, t) or MapCircle(s, t) or MapSquare(s, t) or MapArrow(s, t);
+		}
+		
+	}
+	
+	top relation MapRootBlock {
+		
+		enforce domain source s : Shapes::RootBlock {
+		};
+		
+		enforce domain target t : Shapes::RootBlock {
+		};
+		
+	}
+	
+	top relation MapBlock {
+		
+		enforce domain source s : Shapes::Block {
+		};
+		
+		enforce domain target t : Shapes::Block {
+		};
+		
+		when {
+			not MapRootBlock(s, t);
+		}
+		
+	}
+	
+	top relation MapCircle {
+		
+		enforce domain source s : Shapes::Circle {
+		};
+		
+		enforce domain target t : Shapes::Circle {
+		};
+		
+	}
+	
+	top relation MapSquare {
+		
+		enforce domain source s : Shapes::Square {
+		};
+		
+		enforce domain target t : Shapes::Square {
+		};
+		
+	}
+	
+	top relation MapArrow {
+		
+		enforce domain source s : Shapes::Arrow {
+		};
+		
+		enforce domain target t : Shapes::Arrow {
+		};
+		
+		when {
+			not s.source.oclIsUndefined() and not s.source.oclIsTypeOf(Shapes::Triangle);
+			not s.target.oclIsUndefined() and not s.target.oclIsTypeOf(Shapes::Triangle);
+		}
+		
+	}		
+		
+	top relation HasTrianglePath {
+		
+		enforce domain source s1 : Shapes::Triangle {
+			outArrow = arrow : Shapes::Arrow {
+				target = nextTriangle : Shapes::Triangle {}
+			}
+		};
+		
+		enforce domain source s2 : Shapes::Triangle {
+		};
+		
+		when {
+			(s2=nextTriangle) or HasTrianglePath(nextTriangle,s2);
+		}
+		
+	}
+	
+	top relation IsTriangleIdentity {
+		
+		enforce domain source s1 : Shapes::Triangle {
+		};
+		
+		enforce domain source s1 : Shapes::Triangle {
+		};		
+		
+	}
+		
+	top relation MapArrowOverTriangles {
+	
+		targetBlock:Shapes::Block;
+		
+		enforce domain source s1 : Shapes::Arrow {
+			source = begin : Shapes::Shape {}
+		};		
+		
+		enforce domain source s2 : Shapes::Arrow {
+			target = end : Shapes::Shape {}
+		};
+		
+		enforce domain target t : Shapes::Arrow {
+			name = s1.name + '_' +s2.name,
+			source = beginMapping : Shapes::Shape {},
+			target = endMapping : Shapes::Shape {},
+			block =  targetBlock
+		};
+		
+		when {					
+			Source2Target(begin.block, targetBlock);
+			Source2Target(begin,beginMapping);
+			Source2Target(end,endMapping);			
+			HasTrianglePath(s1.target,s2.source) or IsTriangleIdentity(s1.target,s2.source);
+		}
+		
+	}
+	
+}

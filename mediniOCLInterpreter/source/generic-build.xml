@@ -1,0 +1,42 @@
+<project name="GENERIC-BUILD" basedir=".">
+
+	<import file="${basedir}/classpath.xml" />
+
+	<target name="full.clean" depends="clean.dependent,clean" />	
+
+	<target name="full.build" depends="build.dependent,build" />
+	
+	<target name="build" depends="init,compile" />	 
+	
+	<target name="clean.dependent">
+		<antcall target="call.dependent">
+			<param name="targetname" value="full.clean"/>
+		</antcall>		
+	</target>
+
+	<target name="build.dependent">
+		<antcall target="call.dependent">
+			<param name="targetname" value="full.build"/>
+		</antcall>		
+	</target>
+	
+	<target name="clean.build" depends="full.clean,full.build" />
+	<target name="clean.distribute" depends="full.clean,full.build,pack" />
+	<target name="incremental.distribute" depends="full.build,pack" />
+	
+
+	<!-- following targets should be customized when this build script is imported: -->
+	
+	<!--
+	<target name="clean"/>
+	
+	<target name="init"/>
+
+	<target name="compile"/>
+	
+	<target name="pack"/>
+
+	<target name="call.dependent"/>
+	-->
+
+</project>

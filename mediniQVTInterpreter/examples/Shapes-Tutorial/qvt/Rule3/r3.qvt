@@ -1,0 +1,159 @@
+-- in this solution, a source Arrow is mapped to three target elements, each of created in a separate domain in relation MapArrow  
+transformation r3(source : Shapes, target : Shapes) {
+	
+	top relation ModelElementName2ModelElementName {
+		
+		varName : String;
+		
+		enforce domain source sourceModelElement : Shapes::ModelElement {
+			name = varName
+		};
+		
+		enforce domain target targetModelElement : Shapes::ModelElement {
+			name = varName
+		};
+		
+		when {
+			Source2Target(sourceModelElement, targetModelElement);
+		}
+		
+	}
+	
+	top relation ModelElementblock2ModelElementblock {
+		
+		enforce domain source sourceModelElement : Shapes::ModelElement {
+			block = sourceblock : Shapes::Block {
+			}
+		};
+		
+		enforce domain target targetModelElement : Shapes::ModelElement {
+			block = targetblock : Shapes::Block {
+			}
+		};
+		
+		when {
+			Source2Target(sourceModelElement, targetModelElement);
+			Source2Target(sourceblock, targetblock);
+		}
+		
+	}
+	
+	top relation Source2Target {
+		
+		enforce domain source s : Shapes::ModelElement {
+		};
+		
+		enforce domain target t : Shapes::ModelElement {
+		};
+		
+		when {
+			MapBlock(s, t) or MapRootBlock(s, t) or MapCircle(s, t) or MapTriangle(s, t) or MapSquare(s, t);
+		}
+		
+	}
+	
+	top relation MapRootBlock {
+		
+		enforce domain source s : Shapes::RootBlock {
+		};
+		
+		enforce domain target t : Shapes::RootBlock {
+		};
+		
+	}
+	
+	top relation MapBlock {
+		
+		enforce domain source s : Shapes::Block {
+		};
+		
+		enforce domain target t : Shapes::Block {
+		};
+		
+		when {
+			not MapRootBlock(s, t);
+		}
+		
+	}
+	
+	top relation MapCircle {
+		
+		enforce domain source s : Shapes::Circle {
+		};
+		
+		enforce domain target t : Shapes::Circle {
+		};
+		
+	}
+	
+	top relation MapTriangle {
+		
+		enforce domain source s : Shapes::Triangle {
+		};
+		
+		enforce domain target t : Shapes::Triangle {
+		};
+		
+	}
+	
+	top relation MapSquare {
+		
+		enforce domain source s : Shapes::Square {
+		};
+		
+		enforce domain target t : Shapes::Square {
+		};
+		
+		when {
+			not t.oclIsUndefined() implies t.name <> 'generated';
+		}
+		
+	}
+	
+	top relation MapArrow {
+		
+		varName : String;
+		
+		enforce domain source sourceArrow : Shapes::Arrow {
+			block = sourceblock : Shapes::Block {
+			},
+			name = varName,
+			source = sourceArrowSource : Shapes::Shape {
+			},
+			target = sourceArrowTarget : Shapes::Shape {
+			}
+		};
+		
+		enforce domain target targetSquare : Shapes::Square {
+			block = targetblock : Shapes::Block {
+			},
+			name = varName + ' generated square'
+		};
+		
+		enforce domain target targetArrow1 : Shapes::Arrow {
+			block = targetblock : Shapes::Block {
+			},
+			name = varName + ' generated first arrow',
+			source = targetArrowSource : Shapes::Shape {
+			},
+			target = targetSquare
+		};
+		
+		enforce domain target targetArrow2 : Shapes::Arrow {
+			block = targetblock : Shapes::Block {
+			},
+			name = varName + ' generated second arrow',
+			target = targetArrowTarget : Shapes::Shape {
+			},
+			source = targetSquare
+		};
+		
+		when {
+			Source2Target(sourceblock, targetblock);
+			Source2Target(sourceArrowSource, targetArrowSource);
+			Source2Target(sourceArrowTarget, targetArrowTarget);
+		}
+		
+	}
+	
+}

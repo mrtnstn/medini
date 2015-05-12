@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Shapes="urn:Shapes.ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmi:id="_7GvSEDlXEd2g9doTYobLGA" type="Shapes" name="source.shapes_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_I5PYoDlYEd2g9doTYobLGA" type="2006">
+    <children xmi:type="notation:Node" xmi:id="_I5PYozlYEd2g9doTYobLGA" type="5001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_I5PYpDlYEd2g9doTYobLGA" y="5"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_I5PYoTlYEd2g9doTYobLGA"/>
+    <element xmi:type="Shapes:Square" href="source.shapes#//@modelElement.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_I5PYojlYEd2g9doTYobLGA" x="55" y="55"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_JYh8sDlYEd2g9doTYobLGA" type="2004">
+    <children xmi:type="notation:Node" xmi:id="_JYh8szlYEd2g9doTYobLGA" type="5002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_JYh8tDlYEd2g9doTYobLGA" y="5"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_JYh8sTlYEd2g9doTYobLGA"/>
+    <element xmi:type="Shapes:Circle" href="source.shapes#//@modelElement.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_JYh8sjlYEd2g9doTYobLGA" x="145" y="55"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_7GvSETlXEd2g9doTYobLGA"/>
+  <element xmi:type="Shapes:RootBlock" href="source.shapes#/"/>
+</notation:Diagram>

@@ -1,0 +1,21 @@
+transformation yetAnotherTrafo(source: ShapeLanguageMetamodel, thisWay: ShapeLanguageMetamodel) {
+
+	top relation RootBlock2RootBlock {
+		enforce domain source sR: RootBlock {
+		};
+		enforce domain thisWay tR: RootBlock {
+		};
+	}
+
+	top relation someRelation {
+		enforce domain source c: Circle {
+			parent = sR: RootBlock { }
+		};
+		enforce domain thisWay s: Square {
+			parent = tR: RootBlock { }
+		};
+		when {
+			RootBlock2RootBlock(sR, tR);
+		}
+	}
+}

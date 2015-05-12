@@ -1,0 +1,3 @@
+Ensure, that the names of all ModelElements are set the first time you transform. When someone changes the names in the target model and retransforms, the changes of the user should not be overwritten. When the user transforms from target to source (backward transformation), his changes to the target names should affect the source model.
+
+Type: Bidirectionality

@@ -1,0 +1,5 @@
+Assume a source model that only contains Circles and Arrows. Construct a transformation that replaces all Arrows by Circles and all Circles by Arrows, while adding a Square as source for each "initial" Arrow and as target for each "final" Arrow.
+
+Note: An initial arrow is an arrow (in the target model) without source (likewise final arrow). 
+
+Type: Duality

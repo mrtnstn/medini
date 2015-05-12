@@ -1,0 +1,39 @@
+-- a relation which copies circles to the target model with their name - but replacing the name 'Circle1' by 'Circle1*'
+transformation AImpliesBProblem(source : Shapes, target : Shapes) {
+
+	top relation myRelationName {
+	
+		varName : String;
+
+		enforce domain source s: Shapes::Circle {
+		};
+
+		enforce domain target t: Shapes::Circle {
+			name = varName
+		};
+		
+		when {
+			s.name = varName;
+		}
+
+		where {
+			myRelationName2(s,t);
+		}
+	}
+
+	relation myRelationName2 {
+
+		enforce domain source s: Shapes::Circle {
+		};
+
+		enforce domain target t: Shapes::Circle {
+			name = 'Circle1*'
+		};
+		
+		when {
+			s.name = 'Circle1';
+		}
+
+	}
+
+}

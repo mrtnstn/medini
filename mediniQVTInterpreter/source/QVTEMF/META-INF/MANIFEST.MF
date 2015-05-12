@@ -1,0 +1,37 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.6.5
+Bundle-Name: Medini EMF WVT
+Bundle-SymbolicName: de.ikv.emf.qvt
+Bundle-Version: 3.0.0.11
+Export-Package: de.ikv.emf.qvt
+Import-Package: 
+ de.ikv.medini.qvt,
+ de.ikv.medini.qvt.execution,
+ de.ikv.medini.qvt.model.qvtbase,
+ de.ikv.medini.qvt.model.qvtrelation,
+ org.eclipse.emf.common,
+ org.eclipse.emf.common.command,
+ org.eclipse.emf.common.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.resource,
+ org.eclipse.emf.ecore.util,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.emf.ecore.xmi.impl,
+ org.eclipse.emf.edit.domain,
+ org.eclipse.emf.transaction,
+ org.eclipse.emf.transaction.util,
+ org.oslo.ocl20,
+ org.oslo.ocl20.bridge4emf,
+ org.oslo.ocl20.semantics.analyser,
+ org.oslo.ocl20.semantics.bridge,
+ org.oslo.ocl20.semantics.bridge.impl,
+ org.oslo.ocl20.semantics.factories,
+ org.oslo.ocl20.semantics.model.expressions,
+ org.oslo.ocl20.semantics.model.types,
+ org.oslo.ocl20.standard.lib,
+ org.oslo.ocl20.standard.types,
+ org.oslo.ocl20.syntax.parser,
+ org.oslo.ocl20.synthesis,
+ uk.ac.kent.cs.kmf.util
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: de.ikv.medini.qvt

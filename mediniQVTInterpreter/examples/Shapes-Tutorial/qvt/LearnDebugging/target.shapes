@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shapes:RootBlock xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Shapes="urn:Shapes.ecore">
+  <modelElement xsi:type="Shapes:Arrow" name="a1_x__y__y__z__y_a1_x_" source="//@modelElement.2" target="//@modelElement.1"/>
+  <modelElement xsi:type="Shapes:Triangle" name="t1_x__y__y__z__y_t1_x_" inArrow="//@modelElement.0"/>
+  <modelElement xsi:type="Shapes:Square" name="s1_x__y__y__z__y_s1_x_" outArrow="//@modelElement.0"/>
+</Shapes:RootBlock>

@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<!DOCTYPE project [
+	<!ENTITY ikvInit SYSTEM "file:./3rdParty/ikv-build/build.init.xml">
+	<!ENTITY ikvPDE SYSTEM "file:./3rdParty/ikv-build/build.pde.xml">
+	<!ENTITY ikvSVN SYSTEM "file:./3rdParty/ikv-build/build.svn.xml">
+]>
+<project name="ikv.mediniQVTEngine" default="ikv.all">
+
+
+	<property name="project.version" value="3.0.0" />
+	<property name="qvtemf.dir" value="${basedir}/mediniQVTInterpreter/source/QVTEMF" />
+
+	<property name="ikv.workspace.dir" value="${basedir}" />
+	<property name="ikv.output.dir" value="${basedir}/dist" />
+	<property name="ikv.test.dir" value="${basedir}/unittest" />
+
+	
+	&ikvInit;
+	&ikvPDE;
+	&ikvSVN;
+
+
+	<target name="ikv.all" description="Build all" depends="ikv.build.qvt,ikv.test.qvt,ikv.test.ocl">
+	</target>
+	
+	<target name="ikv.build.qvt" description="Build the QVT engine at ./dist/qvtemf.jar">
+		<ikv-read-svn-revision />
+		<ikv-patch-version revision="${ikv.svn.revision}" version="${project.version}" />
+		<ant antfile="${qvtemf.dir}/build.xml" target="clean.distribute.with.src" inheritall="false">
+		   <property name="build.artifactsDir" value="${ikv.output.dir}"/>
+		</ant>
+	</target>
+
+	<target name="ikv.test.qvt" description="Run QVT tests, test report is at ./testresult/QVTEMFTest/testreport/html/index.html">
+		<ant inheritall="false" antfile="${basedir}/mediniQVTInterpreter/source/QVTEMFTest/runtest.xml" >
+			<property name="build.artifactsDir" value="${ikv.testresult.dir}"/>
+		</ant>
+	</target>
+	
+	<target name="ikv.test.ocl" description="Run OCL tests, test report is at ./testresult/OCLEMFTest_reflective/testreport/html/index.html and ./test/OCLEMFTest_not_reflective/testreport/html/index.html">
+		<ant inheritall="false" antfile="${basedir}/mediniOCLInterpreter/source/OCLEMFTest/runtest.xml" >
+			<property name="build.artifactsDir" value="${ikv.testresult.dir}"/>
+		</ant>
+	</target>
+
+</project>

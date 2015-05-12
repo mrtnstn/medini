@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Shapes:RootBlock xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Shapes="urn:Shapes.ecore">
+  <modelElement xsi:type="Shapes:Arrow" name="a2" source="//@modelElement.8" target="//@modelElement.3"/>
+  <modelElement xsi:type="Shapes:Arrow" name="a1" source="//@modelElement.5" target="//@modelElement.3"/>
+  <modelElement xsi:type="Shapes:Circle" name="c3 circle" inArrow="//@modelElement.4"/>
+  <modelElement xsi:type="Shapes:Square" name="c3 square" inArrow="//@modelElement.0 //@modelElement.1" outArrow="//@modelElement.4"/>
+  <modelElement xsi:type="Shapes:Arrow" name="c3 arrow" source="//@modelElement.3" target="//@modelElement.2"/>
+  <modelElement xsi:type="Shapes:Circle" name="c2 circle" inArrow="//@modelElement.7" outArrow="//@modelElement.1"/>
+  <modelElement xsi:type="Shapes:Square" name="c2 square" outArrow="//@modelElement.7"/>
+  <modelElement xsi:type="Shapes:Arrow" name="c2 arrow" source="//@modelElement.6" target="//@modelElement.5"/>
+  <modelElement xsi:type="Shapes:Circle" name="c1 circle" inArrow="//@modelElement.10" outArrow="//@modelElement.0"/>
+  <modelElement xsi:type="Shapes:Square" name="c1 square" outArrow="//@modelElement.10"/>
+  <modelElement xsi:type="Shapes:Arrow" name="c1 arrow" source="//@modelElement.9" target="//@modelElement.8"/>
+</Shapes:RootBlock>

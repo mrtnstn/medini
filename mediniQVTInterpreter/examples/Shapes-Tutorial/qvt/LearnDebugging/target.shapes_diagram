@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Shapes="urn:Shapes.ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmi:id="_lGVxcDlhEd2g9doTYobLGA" type="Shapes" name="target.shapes_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_3h1cYDlhEd2g9doTYobLGA" type="2005">
+    <children xmi:type="notation:Node" xmi:id="_3h1cYzlhEd2g9doTYobLGA" type="5003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_3h1cZDlhEd2g9doTYobLGA" y="5"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_3h1cYTlhEd2g9doTYobLGA"/>
+    <element xmi:type="Shapes:Triangle" href="target.shapes#//@modelElement.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3h1cYjlhEd2g9doTYobLGA" x="55" y="145"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_3h1cZTlhEd2g9doTYobLGA" type="2006">
+    <children xmi:type="notation:Node" xmi:id="_3h1caDlhEd2g9doTYobLGA" type="5001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_3h1caTlhEd2g9doTYobLGA" y="5"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_3h1cZjlhEd2g9doTYobLGA"/>
+    <element xmi:type="Shapes:Square" href="target.shapes#//@modelElement.2"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3h1cZzlhEd2g9doTYobLGA" x="55" y="55"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_lGVxcTlhEd2g9doTYobLGA"/>
+  <element xmi:type="Shapes:RootBlock" href="target.shapes#/"/>
+  <edges xmi:type="notation:Edge" xmi:id="_3h1cajlhEd2g9doTYobLGA" type="4001" source="_3h1cZTlhEd2g9doTYobLGA" target="_3h1cYDlhEd2g9doTYobLGA">
+    <children xmi:type="notation:Node" xmi:id="_3h1cbjlhEd2g9doTYobLGA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_3h1cbzlhEd2g9doTYobLGA" y="40"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_3h1cazlhEd2g9doTYobLGA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_3h1cbDlhEd2g9doTYobLGA"/>
+    <element xmi:type="Shapes:Arrow" href="target.shapes#//@modelElement.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_3h1cbTlhEd2g9doTYobLGA" points="[0, 15, 0, -75]$[0, 75, 0, -15]"/>
+  </edges>
+</notation:Diagram>

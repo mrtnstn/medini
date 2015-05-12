@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Medini OCL EMF
+Bundle-SymbolicName: org.oslo.ocl20.bridge4emf
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: 
+ org.eclipse.core.runtime;version="3.4.0",
+ org.eclipse.emf.common,
+ org.eclipse.emf.common.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.impl,
+ org.eclipse.emf.ecore.resource,
+ org.eclipse.emf.ecore.util,
+ org.eclipse.emf.ecore.xmi,
+ org.oslo.ocl20,
+ org.oslo.ocl20.semantics,
+ org.oslo.ocl20.semantics.analyser,
+ org.oslo.ocl20.semantics.bridge,
+ org.oslo.ocl20.semantics.bridge.impl,
+ org.oslo.ocl20.semantics.factories,
+ org.oslo.ocl20.semantics.model.types,
+ org.oslo.ocl20.standard.lib,
+ org.oslo.ocl20.standard.types,
+ org.oslo.ocl20.syntax.parser,
+ org.oslo.ocl20.synthesis,
+ uk.ac.kent.cs.kmf.util
+Export-Package: org.oslo.ocl20.bridge4emf,
+ uk.ac.kent.cs.kmf.util

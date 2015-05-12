@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Shapes:RootBlock xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Shapes="urn:Shapes.ecore">
+  <modelElement xsi:type="Shapes:Arrow" name="a2_a5" source="//@modelElement.4" target="//@modelElement.3"/>
+  <modelElement xsi:type="Shapes:Arrow" name="a4_a5" source="//@modelElement.2" target="//@modelElement.3"/>
+  <modelElement xsi:type="Shapes:Square" name="s2" outArrow="//@modelElement.1"/>
+  <modelElement xsi:type="Shapes:Circle" name="c1" inArrow="//@modelElement.0 //@modelElement.1"/>
+  <modelElement xsi:type="Shapes:Square" name="s1" outArrow="//@modelElement.0"/>
+</Shapes:RootBlock>

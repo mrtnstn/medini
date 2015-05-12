@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Shapes"
+    nsURI="urn:Shapes.ecore" nsPrefix="Shapes">
+  <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//Block"
+        eOpposite="#//Block/modelElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Arrow" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Shape"
+        eOpposite="#//Shape/outArrow"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//Shape"
+        eOpposite="#//Shape/inArrow"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Shape" abstract="true" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inArrow" upperBound="-1"
+        eType="#//Arrow" eOpposite="#//Arrow/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outArrow" upperBound="-1"
+        eType="#//Arrow" eOpposite="#//Arrow/source"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleShape" abstract="true" eSuperTypes="#//Shape"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Square" eSuperTypes="#//SimpleShape"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Triangle" eSuperTypes="#//SimpleShape"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Circle" eSuperTypes="#//SimpleShape"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="#//Shape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" upperBound="-1"
+        eType="#//ModelElement" containment="true" eOpposite="#//ModelElement/block"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RootBlock" eSuperTypes="#//Block"/>
+</ecore:EPackage>

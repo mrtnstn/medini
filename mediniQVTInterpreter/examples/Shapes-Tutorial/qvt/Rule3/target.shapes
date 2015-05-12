@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Shapes:RootBlock xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Shapes="urn:Shapes.ecore">
+  <modelElement xsi:type="Shapes:Square" name="a1 generated square" inArrow="//@modelElement.1" outArrow="//@modelElement.2"/>
+  <modelElement xsi:type="Shapes:Arrow" name="a1 generated first arrow" source="//@modelElement.8" target="//@modelElement.0"/>
+  <modelElement xsi:type="Shapes:Arrow" name="a1 generated second arrow" source="//@modelElement.0" target="//@modelElement.7"/>
+  <modelElement xsi:type="Shapes:Square" name="a2 generated square" inArrow="//@modelElement.4" outArrow="//@modelElement.5"/>
+  <modelElement xsi:type="Shapes:Arrow" name="a2 generated first arrow" source="//@modelElement.6" target="//@modelElement.3"/>
+  <modelElement xsi:type="Shapes:Arrow" name="a2 generated second arrow" source="//@modelElement.3" target="//@modelElement.7"/>
+  <modelElement xsi:type="Shapes:Circle" name="c2" outArrow="//@modelElement.4"/>
+  <modelElement xsi:type="Shapes:Triangle" name="t1" inArrow="//@modelElement.2 //@modelElement.5"/>
+  <modelElement xsi:type="Shapes:Circle" name="c1" outArrow="//@modelElement.1"/>
+</Shapes:RootBlock>

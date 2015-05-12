@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shapes:RootBlock xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Shapes="urn:Shapes.ecore">
+  <modelElement xsi:type="Shapes:Circle" name="c1" inArrow="//@modelElement.15" outArrow="//@modelElement.2 //@modelElement.9"/>
+  <modelElement xsi:type="Shapes:Circle" name="c2" inArrow="//@modelElement.2" outArrow="//@modelElement.5"/>
+  <modelElement xsi:type="Shapes:Arrow" name="a1" source="//@modelElement.0" target="//@modelElement.1"/>
+  <modelElement xsi:type="Shapes:Circle" name="c3" inArrow="//@modelElement.5 //@modelElement.11" outArrow="//@modelElement.6"/>
+  <modelElement xsi:type="Shapes:Circle" name="c4" inArrow="//@modelElement.6 //@modelElement.13" outArrow="//@modelElement.18"/>
+  <modelElement xsi:type="Shapes:Arrow" name="a2" source="//@modelElement.1" target="//@modelElement.3"/>
+  <modelElement xsi:type="Shapes:Arrow" name="a3" source="//@modelElement.3" target="//@modelElement.4"/>
+  <modelElement xsi:type="Shapes:Circle" name="c5" inArrow="//@modelElement.9" outArrow="//@modelElement.10"/>
+  <modelElement xsi:type="Shapes:Circle" name="c6" inArrow="//@modelElement.10" outArrow="//@modelElement.11"/>
+  <modelElement xsi:type="Shapes:Arrow" name="a4" source="//@modelElement.0" target="//@modelElement.7"/>
+  <modelElement xsi:type="Shapes:Arrow" name="a5" source="//@modelElement.7" target="//@modelElement.8"/>
+  <modelElement xsi:type="Shapes:Arrow" name="a6" source="//@modelElement.8" target="//@modelElement.3"/>
+  <modelElement xsi:type="Shapes:Circle" name="c7" inArrow="//@modelElement.16" outArrow="//@modelElement.13"/>
+  <modelElement xsi:type="Shapes:Arrow" name="a8" source="//@modelElement.12" target="//@modelElement.4"/>
+  <modelElement xsi:type="Shapes:Circle" name="c8" inArrow="//@modelElement.20" outArrow="//@modelElement.15 //@modelElement.16"/>
+  <modelElement xsi:type="Shapes:Arrow" name="a7" source="//@modelElement.14" target="//@modelElement.0"/>
+  <modelElement xsi:type="Shapes:Arrow" name="a9" source="//@modelElement.14" target="//@modelElement.12"/>
+  <modelElement xsi:type="Shapes:Circle" name="c9" inArrow="//@modelElement.18"/>
+  <modelElement xsi:type="Shapes:Arrow" name="a10" source="//@modelElement.4" target="//@modelElement.17"/>
+  <modelElement xsi:type="Shapes:Circle" name="c10" outArrow="//@modelElement.20"/>
+  <modelElement xsi:type="Shapes:Arrow" name="a11" source="//@modelElement.19" target="//@modelElement.14"/>
+</Shapes:RootBlock>

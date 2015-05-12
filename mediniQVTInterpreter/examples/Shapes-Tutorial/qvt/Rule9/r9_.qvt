@@ -1,0 +1,170 @@
+transformation r9(source : ShapeLanguageMetamodel, target : ShapeLanguageMetamodel) {
+	
+	top relation ArrowSource2ArrowSource {
+		
+		enforce domain source sourceArrow : ShapeLanguageMetamodel::Arrow {
+			source = sourceArrowSource : ShapeLanguageMetamodel::Shape {
+			}
+		};
+		
+		enforce domain target targetArrow : ShapeLanguageMetamodel::Arrow {
+			source = targetArrowSource : ShapeLanguageMetamodel::Shape {
+			}
+		};
+		
+		when {
+			Source2Target(sourceArrow, targetArrow);
+			Source2Target(sourceArrowSource, targetArrowSource);
+		}
+		
+	}
+	
+	top relation ArrowTarget2ArrowTarget {
+		
+		enforce domain source sourceArrow : ShapeLanguageMetamodel::Arrow {
+			target = sourceArrowTarget : ShapeLanguageMetamodel::Shape {
+			}
+		};
+		
+		enforce domain target targetArrow : ShapeLanguageMetamodel::Arrow {
+			target = targetArrowTarget : ShapeLanguageMetamodel::Shape {
+			}
+		};
+		
+		when {
+			Source2Target(sourceArrow, targetArrow);
+			Source2Target(sourceArrowTarget, targetArrowTarget);
+		}
+		
+	}
+	
+	top relation ModelElementName2ModelElementName {
+		
+		varName : String;
+		
+		enforce domain source sourceModelElement : ShapeLanguageMetamodel::ModelElement {
+			name = varName
+		};
+		
+		enforce domain target targetModelElement : ShapeLanguageMetamodel::ModelElement {
+			name = getName(targetModelElement.name, varName)
+		};
+		
+		when {
+			varName = 
+				if not sourceModelElement.oclIsUndefined() 
+					then sourceModelElement.name 
+					else targetModelElement.name 
+				endif; 
+			Source2Target(sourceModelElement, targetModelElement);
+		}
+	}
+	
+	query getName (name : String, defaultName : String) : String {
+		if name.oclIsUndefined()
+		then
+			defaultName
+		else
+			name
+		endif
+	}
+
+	
+	top relation ModelElementParent2ModelElementParent {
+		
+		enforce domain source sourceModelElement : ShapeLanguageMetamodel::ModelElement {
+			parent = sourceParent : ShapeLanguageMetamodel::Block {
+			}
+		};
+		
+		enforce domain target targetModelElement : ShapeLanguageMetamodel::ModelElement {
+			parent = targetParent : ShapeLanguageMetamodel::Block {
+			}
+		};
+		
+		when {
+			Source2Target(sourceModelElement, targetModelElement);
+			Source2Target(sourceParent, targetParent);
+		}
+		
+	}
+	
+	top relation Source2Target {
+		
+		enforce domain source s : ShapeLanguageMetamodel::ModelElement {
+		};
+		
+		enforce domain target t : ShapeLanguageMetamodel::ModelElement {
+		};
+		
+		when {
+			MapBlock(s, t) or MapRootBlock(s, t) or MapCircle(s, t) or MapTriangle(s, t) or MapSquare(s, t) or MapArrow(s, t);
+		}
+		
+	}
+	
+	top relation MapRootBlock {
+		
+		enforce domain source s : ShapeLanguageMetamodel::RootBlock {
+		};
+		
+		enforce domain target t : ShapeLanguageMetamodel::RootBlock {
+		};
+		
+	}
+	
+	top relation MapBlock {
+		
+		enforce domain source s : ShapeLanguageMetamodel::Block {
+		};
+		
+		enforce domain target t : ShapeLanguageMetamodel::Block {
+		};
+		
+		when {
+			not MapRootBlock(s, t);
+		}
+		
+	}
+	
+	top relation MapCircle {
+		
+		enforce domain source s : ShapeLanguageMetamodel::Circle {
+		};
+		
+		enforce domain target t : ShapeLanguageMetamodel::Circle {
+		};
+		
+	}
+	
+	top relation MapTriangle {
+		
+		enforce domain source s : ShapeLanguageMetamodel::Triangle {
+		};
+		
+		enforce domain target t : ShapeLanguageMetamodel::Triangle {
+		};
+		
+	}
+	
+	top relation MapSquare {
+		
+		enforce domain source s : ShapeLanguageMetamodel::Square {
+		};
+		
+		enforce domain target t : ShapeLanguageMetamodel::Square {
+		};
+		
+	}
+	
+	top relation MapArrow {
+		
+		enforce domain source s : ShapeLanguageMetamodel::Arrow {
+		};
+		
+		enforce domain target t : ShapeLanguageMetamodel::Arrow {
+		};
+		
+	}
+	
+}

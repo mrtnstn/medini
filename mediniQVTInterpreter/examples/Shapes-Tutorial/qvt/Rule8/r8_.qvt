@@ -1,0 +1,49 @@
+-- The idea of this solution is the following:
+-- If a circle has more then one outgoing arrow, it opens a new block, otherwise it is put into an existing block calculated by its predecessors (circles having a path to this circle).
+-- Note that this transformation prints information to the console using the _debug query.
+-- Note that there are some statements commented. These statements should be prefered to the preceding OCL statements, but however because of logical deadlocks these commented relation calls produce, they will corrupt the transformation.
+transformation r8(source : Shapes, target : Shapes) {
+	
+	
+	top relation A {
+	
+		enforce domain source s : Shapes::Circle {
+		};
+		
+		enforce domain target t : Shapes::Circle {
+		};		
+		
+		when {
+			B(s,t);
+		}
+	
+	}
+	
+	top relation B {
+	
+		enforce domain source s : Shapes::Circle {
+		};
+		
+		enforce domain target t : Shapes::Circle {
+		};		
+		
+		when {
+			not C(s,t);
+		}
+	
+	}
+	
+	top relation C {
+	
+		enforce domain source s : Shapes::Circle {
+		};
+		
+		enforce domain target t : Shapes::Circle {
+		};		
+		
+		when {
+			A(s,t);
+		}
+	}
+	
+}

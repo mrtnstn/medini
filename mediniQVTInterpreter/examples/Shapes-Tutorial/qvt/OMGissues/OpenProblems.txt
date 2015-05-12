@@ -1,0 +1,46 @@
+This file lists some problems found with the QVT standard.
+
+
+1. (see transformation qvt/OMGissues/AImpliesBProblem.qvt)
+ 
+Consider a Circle instance with name "Circle2". Is it required to fulfill the where clause of relation myRelationName?
+
+In the beginning of spec. section 7.2.1, it is stated, that it is not required, 
+since relation myRelationName2 only needs to hold if its when clauses are fulfilled (which is not the case here). 
+This semantics is implemented in mediniQVT.
+
+However in the end of section 7.2.1, it is stated, that "Circle2" must satisfy the where clause, which is not the case here. 
+This would result in an interruption of the whole transformation in mediniQVT if we interprete that myRelationName does not hold for "Circle2".
+
+A possible solution would be to introduced a new keyword "optional", with which a where clause can be decorated, 
+in order to state that that a where clause must be satisfied or not.
+
+
+
+2. (see transformation qvt/OMGissues/AImpliesBProblem.qvt and qvt/OMGissues/AImpliesBProblem-variant.qvt)
+It is unclear from the specification whether AImpliesBProblem-variant.qvt has exactly the same semantics as AImpliesBProblem.qvt.
+They differ in stating some conditions directly in the source domains or as when clauses.
+mediniQVT regards both transformations as semantically equivalent.
+ 
+ 
+ 
+
+3.
+If a metamodel defines an unidirectional reference, you cannot navigate from the referenced element to the referencing element usng OCL.
+We found that the UML2 metamodel from Eclipse has many such references, so writing QVT transformations becomes difficult.
+So it can useful to change the QVT or OCL standard to provide a workaround. 
+But maybe the point is stronger that the metamodeler not intended the opposite reference to be navigable.
+
+
+
+
+4. (see transformation qvt/OMGissues/InstantiationByWhereClause.qvt)
+It is not defiend by the standard whether objects shall created by a relation call or by the calling relation's target domain itself, if these two alternatives exist. 
+See example InstantiationByWhereClause.qvt, where the parent of the mapped block in relation Block2Block is not created by the nested object template "containerBlock" 
+but rather by the Block2RootBlock relation call in the where clause, because it defines a more specific type.
+
+
+
+5.
+A facility is missing, with which one can say that a when or where clause shall only be relevant when transforming into a special direction. 
+This would ease writing bidirectional transformations. 

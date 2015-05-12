@@ -1,0 +1,221 @@
+-- In this solution, relation MapCircle is the interesting relation. In its when clauses, it save into Boolean variables whether some relations hold or not, and use this information in the where clauses.
+-- The where clauses are not allowed to call relation MapArrow, since MapArrow is a top-level relation (see QVT spec. section 7.11.2.1 isTopLevel). 
+transformation r7(source : Shapes, target : Shapes) {
+
+	top relation ArrowSource2ArrowSource {
+		
+		enforce domain source sourceArrow : Shapes::Arrow {
+			source = sourceArrowSource : Shapes::Shape {
+			}
+		};
+		
+		enforce domain target targetArrow : Shapes::Arrow {
+			source = targetArrowSource : Shapes::Shape {
+			}
+		};
+		
+		when {
+			Source2Target(sourceArrow, targetArrow);
+			Source2Target(sourceArrowSource, targetArrowSource);
+		}
+		
+	}
+	
+	top relation ArrowTarget2ArrowTarget {
+		
+		enforce domain source sourceArrow : Shapes::Arrow {
+			target = sourceArrowTarget : Shapes::Shape {
+			}
+		};
+		
+		enforce domain target targetArrow : Shapes::Arrow {
+			target = targetArrowTarget : Shapes::Shape {
+			}
+		};
+		
+		when {
+			Source2Target(sourceArrow, targetArrow);
+			Source2Target(sourceArrowTarget, targetArrowTarget);
+		}
+		
+	}
+	
+	top relation ModelElementName2ModelElementName {
+		
+		varName : String;
+		
+		enforce domain source sourceModelElement : Shapes::ModelElement {
+			name = varName
+		};
+		
+		enforce domain target targetModelElement : Shapes::ModelElement {
+			name = varName
+		};
+		
+		when {
+			Source2Target(sourceModelElement, targetModelElement);
+		}
+		
+	}
+	
+	top relation ModelElementblock2ModelElementblock {
+		
+		enforce domain source sourceModelElement : Shapes::ModelElement {
+			block = sourceblock : Shapes::Block {
+			}
+		};
+		
+		enforce domain target targetModelElement : Shapes::ModelElement {
+			block = targetblock : Shapes::Block {
+			}
+		};
+		
+		when {
+			Source2Target(sourceModelElement, targetModelElement);
+			Source2Target(sourceblock, targetblock);
+		}
+		
+	}
+	
+	top relation Source2Target {
+		
+		enforce domain source s : Shapes::ModelElement {
+		};
+		
+		enforce domain target t : Shapes::ModelElement {
+		};
+		
+		when {
+			MapBlock(s, t) or MapRootBlock(s, t) or MapCircle(s, t) or MapTriangle(s, t) or MapSquare(s, t) or MapArrow(s, t);
+		}
+		
+	}
+	
+	top relation MapRootBlock {
+		
+		enforce domain source s : Shapes::RootBlock {
+		};
+		
+		enforce domain target t : Shapes::RootBlock {
+		};
+		
+	}
+	
+	top relation MapBlock {
+		
+		enforce domain source s : Shapes::Block {
+		};
+		
+		enforce domain target t : Shapes::Block {
+		};
+		
+		when {
+			not MapRootBlock(s, t);
+		}
+		
+	}
+	
+	top relation MapCircle {
+		
+		hasAtLeaseOneInArrow : Boolean;
+		hasAtLeaseOneOutArrow : Boolean;
+		
+		enforce domain source s : Shapes::Circle { };
+		
+		enforce domain target t : Shapes::Arrow {
+			source = c1 : Shapes::Shape { },
+			target = c2 : Shapes::Shape { }
+		};
+		
+		when {
+			hasAtLeaseOneInArrow = MapArrow(s.inArrow->asSequence()->first(), c1);
+			hasAtLeaseOneOutArrow = MapArrow(s.outArrow->asSequence()->first(), c2);
+		}
+		
+		where {
+			if hasAtLeaseOneInArrow then
+				true
+			else
+				createSquareForInitialArrow(s, c1)
+			endif;
+			if hasAtLeaseOneOutArrow then
+				true
+			else
+				createSquareForFinalArrow(s, c2)
+			endif;
+		}
+		
+	}
+	
+	relation createSquareForInitialArrow {
+		
+		enforce domain source s : Shapes::Circle {		
+			block = sourceblock : Shapes::Block {
+			}
+		 };
+		
+		enforce domain target t : Shapes::Square {
+			name = 'initial square',
+			block = targetblock : Shapes::Block {
+			}
+		};
+		
+		when {
+			s.inArrow->isEmpty();
+			Source2Target(sourceblock, targetblock);
+		}
+		
+	}
+	
+	relation createSquareForFinalArrow {
+		
+		enforce domain source s : Shapes::Circle { 
+			block = sourceblock : Shapes::Block {
+			}
+		};
+		
+		enforce domain target t : Shapes::Square {
+			name = 'final square',
+			block = targetblock : Shapes::Block {
+			}
+		};
+		
+		when {
+			s.outArrow->isEmpty();
+			Source2Target(sourceblock, targetblock);
+		}
+		
+	}
+	
+	top relation MapTriangle {
+		
+		enforce domain source s : Shapes::Triangle {
+		};
+		
+		enforce domain target t : Shapes::Triangle {
+		};
+		
+	}
+	
+	top relation MapSquare {
+		
+		enforce domain source s : Shapes::Square {
+		};
+		
+		enforce domain target t : Shapes::Square {
+		};
+		
+	}
+		
+	top relation MapArrow {
+		
+		enforce domain source s : Shapes::Arrow {
+		};
+		
+		enforce domain target t : Shapes::Circle {
+		};
+		
+	}
+	
+	
+}

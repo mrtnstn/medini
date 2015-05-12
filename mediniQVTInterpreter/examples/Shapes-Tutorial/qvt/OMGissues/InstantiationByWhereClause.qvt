@@ -1,0 +1,39 @@
+/*
+ This transformation tests the binding of object template variables in where clause relation calls,
+ if the type of the variable in the called relation is a subtype of that of the calling relation.
+ 
+ The containerBlock variable is bound by Block2RootBlock in the where clause of Block2Block, because its type
+ in the former (Shapes::RootBlock) is a subtype of that in the latter (Shapes::Block).
+*/
+transformation InstantiationByWhereClause(source : Shapes, target : Shapes) {
+	
+	top relation Block2Block {
+		
+		theName : String;
+		
+		checkonly domain source block : Shapes::Block {
+			name = theName
+		};
+		
+		enforce domain target targetBlock : Shapes::Block {
+			name = theName,
+			block = containerBlock : Shapes::Block {
+				name = theName + '_Container'
+			}
+		};
+		
+		where {
+			Block2RootBlock(block, containerBlock);
+		}
+		
+	}
+	
+	relation Block2RootBlock {
+		
+		checkonly domain source sourceBlock : Shapes::Block { };
+		
+		enforce domain target targetBlock : Shapes::RootBlock { };
+		
+	}
+	
+}
