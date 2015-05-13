@@ -364,7 +364,9 @@ public class QvtSemanticTask implements Runnable {
 											.getRootVariable().getName()
 									+ " of relation "
 									+ this.relation.getName()
-									+ " cannot be assigned two different values. Ensure that arguments of relation calls to this relation pass only one value for this variable!");
+									+ " cannot be assigned two different values ("
+									+ oldValue.toString() + ", " + relationDomainValue.toString() + ")."
+									+ " Ensure that arguments of relation calls to this relation pass only one value for this variable!");
 				}
 				this.currentRuntimeEnvironment.setValue(
 						this.initializeRelationDomain.getRootVariable()
