@@ -16,32 +16,16 @@ Features:
 Requirements
 ============
 
-* Java 5
-* Optional: Eclipse 3.3
-
-
-Build & Test headless
-=====================
-
-Execute "build.bat -p" to see how to build the QVT engine headless and how to run the tests for QVT and OCL.
+* Java 8
+* Eclipse Luna
 
 
 Build & Test in Eclipse
 =======================
 
-First you have to set up several classpath variables at Window | Preferences -> Java/Build Path/Classpath Variables :
+Import all Java projects in Eclipse by File | Import | Existing Projects into Workspace (uncheck the Copy option).
 
-EMF_COMMON = .\mediniOCLInterpreter\3rdParty\EMF\org.eclipse.emf.common_2.2.1.v200609210005.jar
-EMF_ECORE_XMI = .\mediniOCLInterpreter\3rdParty\EMF\org.eclipse.emf.ecore.xmi_2.2.1.v200609210005.jar
-EMF_ECORE = .\mediniOCLInterpreter\3rdParty\EMF\org.eclipse.emf.ecore_2.2.1.v200609210005.jar
-EMF_EDIT = .\mediniQVTInterpreter\3rdParty\EMF\org.eclipse.emf.edit_2.2.1.v200609210005.jar
-EMF_TRANSACTION = .\mediniQVTInterpreter\3rdParty\EMF\org.eclipse.emf.transaction_1.1.0.v200703301538.jar
-
-
-Now, import all Java projects in Eclipse by File | Import | Existing Projects into Workspace (uncheck the Copy option).
-
-To build the QVT engine in Eclipse, open the ANT view, drag QVTEMF/build.xml into it and double click on the "clean.distribute" task. qvtemf.jar is located in QVTEMF/dist.
-Tip: Ant target "incremental.distribute" does not perform a clean-up and thus can be much faster by incremental building the Java sources.
+To build the QVT engine in Eclipse just use standard eclipse build feature.
 
 To run the QVT tests, select class QVTTestSuite in the Package Explorer and execute "Run As | JUnit Test" from the context menu.
 
