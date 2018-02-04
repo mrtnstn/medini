@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Medini QVT Test Adapters
+Bundle-SymbolicName: de.ikv.medini.qvt.test.adapters
+Bundle-Version: 1.8.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: de.ikv.medini.ocl.test,
+ org.eclipse.emf.ecore,
+ org.oslo.ocl20,
+ de.ikv.emf.qvt,
+ de.ikv.medini.qvt
+Import-Package: uk.ac.kent.cs.kmf.util
+Export-Package: de.ikv.medini.qvt.test,
+ de.ikv.medini.qvtemf.test

@@ -1,7 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Medini OCL Common
+Bundle-Name: KMF Util
 Bundle-SymbolicName: uk.ac.kent.cs.kmf.util
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: uk.ac.kent.cs.kmf.util
+Export-Package: uk.ac.kent.cs.kmf.common,
+ uk.ac.kent.cs.kmf.util,
+ uk.ac.kent.cs.kmf.util.reflection

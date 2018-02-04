@@ -1,20 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Medini OCL Common
+Bundle-Name: Oslo OCL Common
 Bundle-SymbolicName: org.oslo.ocl20
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Import-Package: 
- org.eclipse.emf.common,
- org.eclipse.emf.common.notify,
- org.eclipse.emf.common.notify.impl,
- org.eclipse.emf.common.util,
- org.eclipse.emf.ecore,
- org.eclipse.emf.ecore.impl,
- org.eclipse.emf.ecore.plugin,
- org.eclipse.emf.ecore.util,
- org.eclipse.emf.ecore.xmi,
- uk.ac.kent.cs.kmf.util
 Export-Package: org.oslo.ocl20,
  org.oslo.ocl20.semantics,
  org.oslo.ocl20.semantics.analyser,
@@ -36,3 +25,7 @@ Export-Package: org.oslo.ocl20,
  org.oslo.ocl20.syntax.ast.types,
  org.oslo.ocl20.syntax.parser,
  org.oslo.ocl20.synthesis
+Require-Bundle: org.eclipse.emf.common,
+ org.eclipse.emf.ecore,
+ uk.ac.kent.cs.kmf.util
+

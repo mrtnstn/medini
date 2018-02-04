@@ -3,6 +3,7 @@
 	<name>de.ikv.medini.qvt.test</name>
 	<comment></comment>
 	<projects>
+		<project>de.ikv.medini.qvtemf.test</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

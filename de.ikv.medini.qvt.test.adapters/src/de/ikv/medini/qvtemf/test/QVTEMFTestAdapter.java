@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.oslo.ocl20.OclProcessor;
-
+import uk.ac.kent.cs.kmf.util.ILog;
 import de.ikv.emf.qvt.EMFQvtProcessorImpl;
 import de.ikv.medini.ocl.test.util.Utilities;
 import de.ikv.medini.qvt.QVTProcessorConsts;
